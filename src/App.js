@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Switch } from "react-router-dom";
+import AddCard from "./decks/cards/AddCard";
 import Layout from "./Layout";
 
 /**
@@ -7,15 +8,21 @@ import Layout from "./Layout";
  */
 
 function App() {
+ 
   return (
     <div className="app-routes">
       <Switch>
-        <Route path="/">
+        <Route exact path="/">
           <Layout />
+        </Route>
+        <Route path="/decks/:deckId/cards/new">
+          <AddCard />
         </Route>
       </Switch>
     </div>
   );
 }
+
+
 
 export default App;

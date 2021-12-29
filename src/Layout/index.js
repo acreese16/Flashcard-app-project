@@ -1,6 +1,9 @@
 import React from "react";
 import Header from "./Header";
 import NotFound from "./NotFound";
+import CreateDeck from "../decks/CreateDeck";
+import Home from "../decks/Home";
+import { Route, Switch } from "react-router-dom";
 
 function Layout() {
   return (
@@ -8,7 +11,17 @@ function Layout() {
       <Header />
       <div className="container">
         {/* TODO: Implement the screen starting here */}
-        <NotFound />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/decks/new">
+            <CreateDeck />
+          </Route>
+          <Route>
+            <NotFound />
+          </Route>
+        </Switch>
       </div>
     </>
   );

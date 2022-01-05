@@ -4,8 +4,8 @@ import { createDeck } from "../utils/api/index";
 
 function CreateDeck() {
 
-  // create use state variable for the new deck which will be created with an empty id, name and description
-  const [newDeck, setNewDeck] = useState({ id: "", name: "", description: "" });
+  // create use state variable for the new deck which will be created with an empty name and description
+  const [newDeck, setNewDeck] = useState({ name: "", description: "" });
   // create a history function to be able to toggle between previous pages
   const history = useHistory();
 
@@ -49,7 +49,7 @@ function CreateDeck() {
                   <label htmlFor="description">Description</label>
                   <textarea name="description" id="description" rows={4} className="form-control" value={newDeck.description} onChange={updateDeck} placeholder="Brief description of the deck" />
               </div>
-              <button type="submit" className="btn btn-primary" onClick={submitDeck}>
+              <button type="submit" className="btn btn-primary mr-2" onClick={submitDeck}>
                   Submit
               </button>
               <Link to={`/`} className="btn btn-secondary">

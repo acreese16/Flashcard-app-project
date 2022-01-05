@@ -12,9 +12,7 @@ function App() {
   return (
     <div className="app-routes">
       <Switch>
-        <Route exact path="/">
           <Layout />
-        </Route>
         <Route path="/decks/:deckId/cards/new">
           <AddCard />
         </Route>

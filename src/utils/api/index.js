@@ -54,7 +54,6 @@ async function fetchJson(url, options, onCancel) {
     }
 
     return await response.json();
-
   } catch (error) {
     if (error.name !== "AbortError") {
       console.error(error.stack);
@@ -216,4 +215,18 @@ export async function deleteCard(cardId, signal) {
   const url = `${API_BASE_URL}/cards/${cardId}`;
   const options = { method: "DELETE", signal };
   return await fetchJson(url, options);
+}
+
+/**
+ * Retrieves all cards associated with the specified `deckId`.
+ * @param deckId
+ *  the id of the target deck
+ * @param signal
+ *  optional AbortController.signal
+ * @returns {Promise<Error|*>}
+ *  a promise that resolves to a possible empty array of cards.
+ */
+export async function listCards(deckId, signal) {
+  const url = `${API_BASE_URL}/cards?deckId=${deckId}`;
+  return await fetchJson(url, { signal }, []);
 }

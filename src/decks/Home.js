@@ -10,6 +10,7 @@ function Home () {
     //create a useEffect to load the available decks
     useEffect(generateDecks, [])
 
+    // create function to generate all the decks available
     function generateDecks() {
         listDecks().then(setDecks);
     }

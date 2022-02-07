@@ -12,6 +12,7 @@ function Study() {
   const history = useHistory();
 
   // useEffect to get the proper deck
+  
   useEffect(() => {
     const abortControl = new AbortController();
 
@@ -41,7 +42,7 @@ function Study() {
       <h2>
           {deck.name}: Study
       </h2>
-      <CardList />
+      <CardList cards={deck.cards}/>
     </>
   );
 }

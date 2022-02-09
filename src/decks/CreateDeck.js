@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { createDeck } from "../utils/api/index";
 
-function CreateDeck() {
+function CreateDeck({updateDecks}) {
 
   // create use state variable for the new deck which will be created with an empty name and description
   const [newDeck, setNewDeck] = useState({ name: "", description: "" });
@@ -20,7 +20,7 @@ function CreateDeck() {
 
     const response = await createDeck(newDeck);
     history.push(`/decks/${response.id}`);
-    updateDeck();
+    updateDecks(1);
   };
 
   
@@ -30,7 +30,7 @@ function CreateDeck() {
       <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
               <li className="breadcrumb-item">
-                  <Link to={`/`}>
+                  <Link to={"/"}>
                       Home
                   </Link>
               </li>

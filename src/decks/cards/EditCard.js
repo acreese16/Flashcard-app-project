@@ -1,13 +1,26 @@
 import React, {useState, useEffect} from "react";
 import CardForm from "./CardForm";
 import { updateCard, readDeck, readCard } from "../../utils/api/index";
-import { useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 
 function EditCard({updateDecks}) {
     const [deck, setDeck] = useState([]);
     const {deckId, cardId} = useParams();
     const history = useHistory();
     const [card, setCard] = useState({ front: "", back: "", deckId: ""});
+
+    useEffect(() => {
+        const abortControl = new AbortController();
+
+        const deckDetails = async() => {
+            const response = await readDeck(deckId, abortControl.signal);
+            setDeck(() => response);
+        };
+        deckDetails();
+        return () => {
+            abortControl.abort();
+        }
+    }, [deckId]);
 
     useEffect(() => {
         const abortControl = new AbortController();
@@ -22,19 +35,6 @@ function EditCard({updateDecks}) {
             abortControl.abort();
         }
     }, [cardId]);
-
-    useEffect(() => {
-        const abortControl = new AbortController();
-
-        const deckDetails = async() => {
-            const response = await readDeck(deckId, abortControl.signal);
-            setDeck(() => response);
-        };
-        deckDetails();
-        return () => {
-            abortControl.abort();
-        }
-    }, [deckId]);
 
     const updateForm = ({target}) => {
         setCard({...card, [target.name]: target.value});

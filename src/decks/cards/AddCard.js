@@ -18,13 +18,11 @@ function AddCard() {
   useEffect(() => {
     const abortControl = new AbortController();
 
-    const cardInfo = async () => {
-      const response = await readDeck(deckId,  abortControl.signal );
-
+    const deckDetails = async () => {
+      const response = await readDeck(deckId, abortControl.signal );
       setDeck(() => response)
     };
-
-    cardInfo();
+    deckDetails();
 
     return () => {
       abortControl.abort();

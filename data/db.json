@@ -7,8 +7,18 @@
     },
     {
       "name": "Qwerty",
-      "description": "This is a test deck",
+      "description": "This is a test deck. I'm updating this!",
       "id": 3
+    },
+    {
+      "name": "lipton ice tea",
+      "description": "A history of tea making",
+      "id": 4
+    },
+    {
+      "name": "One more test Deck",
+      "description": "I'm testing this one out to make sure this works correctly",
+      "id": 5
     }
   ],
   "cards": [
@@ -23,6 +33,30 @@
       "back": "Renders the first matching child <Route> ",
       "deckId": 2,
       "id": 5
+    },
+    {
+      "front": "This is a new card",
+      "back": "Creating a new card",
+      "deckId": 2,
+      "id": 6
+    },
+    {
+      "front": "This is a test",
+      "back": "For the test",
+      "deckId": 3,
+      "id": 8
+    },
+    {
+      "front": "This is a new card for fun",
+      "back": "Testing purposes",
+      "deckId": 3,
+      "id": 9
+    },
+    {
+      "front": "This is a new card that I want to test",
+      "back": "It's right!",
+      "deckId": 2,
+      "id": 10
     }
   ]
 }

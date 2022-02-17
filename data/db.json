@@ -2,7 +2,7 @@
   "decks": [
     {
       "name": "React Router",
-      "description": "React Router is a collection of navigational components that compose declaratively with your application.",
+      "description": "React Router is a collection of navigational components that compose declaratively with your application. hdhdfhd",
       "id": 2
     },
     {
@@ -11,8 +11,8 @@
       "id": 3
     },
     {
-      "name": "lipton ice tea",
-      "description": "A history of tea making",
+      "name": "lipton ice teajkjijojoj",
+      "description": "A history of tea makingdagfdfasfa",
       "id": 4
     },
     {
@@ -57,6 +57,42 @@
       "back": "It's right!",
       "deckId": 2,
       "id": 10
+    },
+    {
+      "front": "hello",
+      "back": "world",
+      "deckId": 3,
+      "id": 11
+    },
+    {
+      "front": "hello.ghdfh. This finally works",
+      "back": "how are you. boo!",
+      "deckId": 4,
+      "id": 12
+    },
+    {
+      "front": "Testing this card creation",
+      "back": "this is a new card",
+      "deckId": 4,
+      "id": 13
+    },
+    {
+      "front": "this is a new card",
+      "back": "wanjfkjnfa",
+      "deckId": 5,
+      "id": 16
+    },
+    {
+      "front": "let's see",
+      "back": "let's see about this",
+      "deckId": 5,
+      "id": 17
+    },
+    {
+      "front": "this is DONE!!!!",
+      "back": "Finished!!!!!",
+      "deckId": 4,
+      "id": 18
     }
   ]
 }

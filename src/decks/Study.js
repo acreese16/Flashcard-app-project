@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { readDeck, readCard } from "../utils/api/index";
+import NotEnough from "./cards/NotEnough"
 
 
 function Study() {
@@ -123,12 +124,18 @@ function Study() {
         </div>
       </div>
     );
+  } else if(deck && deck.cards && deck.cards.length <= 2) {
+    return (
+      <div>
+        <NotEnough deck={deck}/>
+      </div>
+    );
   } else {
     return (
       <div>
         <p>Loading</p>
       </div>
-    );
+    )
   }
 }
 

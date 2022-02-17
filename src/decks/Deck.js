@@ -149,7 +149,7 @@ function Deck({ updateDecks }) {
                   >
                     Edit
                   </Link>
-                  <Link
+                  <button
                     onClick={async () => {
                       if (
                         window.confirm(
@@ -165,9 +165,10 @@ function Deck({ updateDecks }) {
                     }}
                     name="delete-card-front"
                     className="btn btn-danger btn-sm mt-3"
+                    to={"/"}
                   >
                     Delete
-                  </Link>
+                  </button>
                 </div>
                 {/*
                 <div className="card-body">

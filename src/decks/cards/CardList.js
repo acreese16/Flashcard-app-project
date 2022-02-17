@@ -1,22 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, useParams, Link } from "react-router-dom";
-import { deleteCard } from "../../utils/api/index";
+import { deleteCard, readCard } from "../../utils/api/index";
 
 function CardList({ cards }) {
-  const [deck, setDeck] = useState([]);
-  //const [cards, setCards] = useState([]);
   const [activeCard, setActiveCard] = useState(0);
-  const [flip, setFlip] = useState(false);
-  const { deckId } = useParams();
-  const {cardId} = useParams();
+  const [front, setFront] = useState(true);
+  const { deckId, cardId } = useParams();
   const history = useHistory();
 
-  // flip card handler
-  const flipCard = () => {
-    setFlip(() => flip);
+  useEffect(() => {
+    const abortControl = new AbortController();
+
+    const getCards = async () => {
+      const response = await readCard(cardId, abortControl.signal);
+      setActiveCard(() => response);
+    };
+    getCards();
+    return () => {
+      abortControl.abort();
+    }
+  }, [cardId])
+
+
+  // flip card handler to set the handler to the back side of the card
+  const flipCardHandler = () => {
+    setFront(() => !front);
   };
 
-  const nextCard = () => {
+  const nextCardHandler = () => {
     if (activeCard === cards.length - 1) {
       window.confirm(
         "Click 'Ok' to restart the deck or 'Cancel' to return to the home page."
@@ -25,19 +36,12 @@ function CardList({ cards }) {
         : history.push("/");
     } else {
       setActiveCard((activeCard) => activeCard + 1);
-      setFlip(() => flip);
+      setFront(() => front);
     }
   };
 
-  function deleteCardHandler(cardId) {
-    const confirm = window.confirm(
-        "Delete this card?\nYou will not be able to recover it."
-      );
-      if (confirm) {
-        deleteCard(cardId).then(() => history.push("/"));
-      }
-  }
 
+  /*
   const cardListing = cards.map((card) => (
     <div>
       <div className="col">{card.front}</div>
@@ -49,11 +53,12 @@ function CardList({ cards }) {
     </div>
     
   ));
+  */
 
-  return <p>There are {cards.length} cards.</p>;
+ 
 
-  /*
-  if (!deck || !deck.cards || deck.cards.length <= 2) {
+  
+  if (cards.length <= 2) {
     return (
       <div>
         <h3>Not enough cards.</h3>
@@ -69,16 +74,16 @@ function CardList({ cards }) {
   } else {
     return (
       <div>
-        <h2>{deck.name}: Study</h2>
         <div className="card-body">
             <h4 className="card-title">Card {activeCard + 1} of {cards.length}</h4>
-            <p>{flip? cards[activeCard].front : cards[activeCard].back}</p>
-            <button className="btn btn-secondary ml-2" onClick={flipCard}>Flip</button>
-            {flip ? null : (<button className="btn btn-primary ml-2" onClick={nextCard}>Next</button>)}
+            <p>{front ? cards[activeCard].front : cards[activeCard].back}</p>
+            <button className="btn btn-secondary ml-2" onClick={flipCardHandler}>Flip</button>
+            {front ? null : (<button className="btn btn-primary ml-2" onClick={nextCardHandler}>Next</button>)}
         </div>
       </div>
     );
   }
+  /*
   // create a variable which handles the history of the "Next" button and displaying the info of the next card
   
     const nextCard = () => {

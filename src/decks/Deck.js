@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams, useRouteMatch, Link } from "react-router-dom";
-import { readDeck, deleteDeck, deleteCard, readCard } from "../utils/api/index";
+import { readDeck, deleteDeck, deleteCard } from "../utils/api/index";
 
 function Deck({ updateDecks }) {
   // creating deck variable for the initial state of the deck being an empty array
@@ -29,29 +29,6 @@ function Deck({ updateDecks }) {
     };
   }, [deckId]);
 
-  /*
-  useEffect(generateCards, []);
-
-  function generateCards(deckId) {
-      listCards(deckId).then(setCards);
-  }
-
-  useEffect(() => {
-    setCards([]);
-    const abortControl = new AbortController();
-
-    const cardDetails = async () => {
-      const response = await readCard(cardId);
-      const cardAPI = await response.json();
-      setCards(cardAPI);
-    };
-    cardDetails();
-    return () => {
-      abortControl.abort();
-    };
-  }, [cardId]);
-*/
-
   // create function to delete the deck handler
   async function deleteDeckHandler(deckId) {
     const confirm = window.confirm(
@@ -66,43 +43,11 @@ function Deck({ updateDecks }) {
     }
   }
 
-  /*
-  //function to delete a deck's card handler
-  function deleteCardHandler(cardId) {
-    const confirm = window.confirm(
-      "Delete this card?\nYou will not be able to recover it."
-    );
-    if (confirm) {
-      deleteCard(cardId).then(() => history.push("/"));
-    }
-  }
-
-  
-  const cardList = cards.map((card, index) => (
-    <li key={index} className="list-group-item flex-column align-items-start">
-      <div className="d-flex justify-content-between">
-        <p className="col">{card.front}</p>
-        <p className="col">{card.back}</p>
-      </div>
-      <Link
-        to={`/decks/${deckId}/cards/${cardId}/edit`}
-        className="btn btn-secondary"
-      >
-        Edit
-      </Link>
-      <button className="btn btn-danger" onClick={deleteCardHandler}>
-        Delete
-      </button>
-    </li>
-  ));
-
-*/
   if (deck || cards) {
     return (
       <div>
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb bg-light d-flex">
-  
             <li className="breadcrumb-item">
               <Link to={"/"}>Home</Link>
             </li>
@@ -170,38 +115,6 @@ function Deck({ updateDecks }) {
                     Delete
                   </button>
                 </div>
-                {/*
-                <div className="card-body">
-                  <p className="card-text col">{card.back}</p>
-                </div>
-                <div className="d-flex pl-3">
-                  <Link
-                    to={`${url}/cards/${card.id}/edit`}
-                    className="btn btn-secondary mr-2"
-                  >
-                    Edit
-                  </Link>
-                  <Link
-                    onClick={async () => {
-                      if (
-                        window.confirm(
-                          "Delete this card?\nYou will not be able to recover it."
-                        )
-                      ) {
-                        await deleteCard(card.id);
-                        updateDecks(-1);
-                        history.go(0);
-                      } else {
-                        history.go(0);
-                      }
-                    }}
-                    name="delete-card-back"
-                    className="btn btn-danger btn-sm"
-                  >
-                    Delete
-                  </Link>
-                </div>
-                  */}
               </div>
             </div>
           </div>

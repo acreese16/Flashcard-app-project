@@ -73,14 +73,6 @@ function Study() {
     setFront(() => !front)
   };
 
-  /*   if (deck.cards.length >= 3) {
-    return (
-        <p>There are {deck.cards.length} cards in this deck</p>
-    )
-  } else {
-    return <p>Whoops, try again</p>
-  } */
-
   // if the deck exists and the amount of cards is greater than 2 then render
   if (deck && deck.cards && deck.cards.length >= 3) {
     return (

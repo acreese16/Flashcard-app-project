@@ -3,7 +3,7 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import { readDeck, updateDeck } from "../utils/api/index";
 
 function EditDeck({ updateDecks }) {
-    // creating an initial state of an empty deck as a default
+  // creating an initial state of an empty deck as a default
   const [deck, setDeck] = useState({ name: "", description: "" });
   // utilizing the parameters for the deckId
   const { deckId } = useParams();
@@ -58,45 +58,45 @@ function EditDeck({ updateDecks }) {
       <div>
         <h3>Edit Deck</h3>
       </div>
-        <div>
-          <form onSubmit={submitDeck}>
-            <div className="form-group">
-              <label>Name</label>
-              <input
-                name="name"
-                id="name"
-                type="text"
-                value={deck.name}
-                onChange={modifyDeck}
-                placeholder={deck.name}
-                className="form-control"
-              />
-            </div>
-            <div className="form-group">
-              <label>Description</label>
-              <textarea
-                name="description"
-                id="desscription"
-                value={deck.description}
-                onChange={modifyDeck}
-                placeholder={deck.description}
-                rows={3}
-                className="form-control"
-              />
-            </div>
-            <Link
-              to={`/decks/${deckId}`}
-              className="btn btn-secondary mr-2"
-              name="cancel"
-            >
-              Cancel
-            </Link>
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
-          </form>
-        </div>
+      <div>
+        <form onSubmit={submitDeck}>
+          <div className="form-group">
+            <label>Name</label>
+            <input
+              name="name"
+              id="name"
+              type="text"
+              value={deck.name}
+              onChange={modifyDeck}
+              placeholder={deck.name}
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <label>Description</label>
+            <textarea
+              name="description"
+              id="desscription"
+              value={deck.description}
+              onChange={modifyDeck}
+              placeholder={deck.description}
+              rows={3}
+              className="form-control"
+            />
+          </div>
+          <Link
+            to={`/decks/${deckId}`}
+            className="btn btn-secondary mr-2"
+            name="cancel"
+          >
+            Cancel
+          </Link>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </form>
       </div>
+    </div>
   );
 }
 

@@ -13,7 +13,6 @@ function EditCard({ updateDecks }) {
   // card as an object with a front, back, and deckId as inital use state
   const [card, setCard] = useState({ front: "", back: "", deckId: "" });
 
-
   // useEffect to make API call to retrieve the deck's details and unique id
   useEffect(() => {
     const abortControl = new AbortController();
@@ -27,7 +26,6 @@ function EditCard({ updateDecks }) {
       abortControl.abort();
     };
   }, [deckId]);
-
 
   // useEffect to make API call to retreive card details and ids
   useEffect(() => {
@@ -43,10 +41,9 @@ function EditCard({ updateDecks }) {
       abortControl.abort();
     };
   }, [cardId]);
-  
 
   // creating a modify card
-  
+
   const modifyCard = ({ target }) => {
     setCard({ ...card, [target.name]: target.value });
   };
@@ -77,7 +74,7 @@ function EditCard({ updateDecks }) {
       <div className="pl-2">
         <h2>Edit Card</h2>
       </div>
-      <CardForm 
+      <CardForm
         cardDetails={card}
         modifyCard={modifyCard}
         submitCard={submitHandler}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { readDeck, createCard} from "../../utils/api/index";
+import { readDeck, createCard } from "../../utils/api/index";
 import CardForm from "./CardForm";
 
 function AddCard() {
@@ -19,8 +19,8 @@ function AddCard() {
     const abortControl = new AbortController();
 
     const deckDetails = async () => {
-      const response = await readDeck(deckId, abortControl.signal );
-      setDeck(() => response)
+      const response = await readDeck(deckId, abortControl.signal);
+      setDeck(() => response);
     };
     deckDetails();
 
@@ -51,17 +51,20 @@ function AddCard() {
             <Link to={`/`}>Home</Link>
           </li>
           <li className="breadcrumb-item">
-              <Link to={`/decks/${deckId}`}>
-                  {deck.name}
-              </Link>
+            <Link to={`/decks/${deckId}`}>{deck.name}</Link>
           </li>
           <li className="breadcrumb-item active" aria-label="page">
-              Add Card
+            Add Card
           </li>
         </ol>
       </nav>
-      <h2>{deck.name}: Add Card</h2>    
-      <CardForm submitCard={submitCard} modifyCard={modifyCard} cardDetails={cardDetails} deckId={deckId} />
+      <h2>{deck.name}: Add Card</h2>
+      <CardForm
+        submitCard={submitCard}
+        modifyCard={modifyCard}
+        cardDetails={cardDetails}
+        deckId={deckId}
+      />
     </div>
   );
 }
